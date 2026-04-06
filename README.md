@@ -14,14 +14,14 @@ To build this project, you need the **Espressif IoT Development Framework (ESP-I
 
 
 Install Dependencies:
-cmake ninja dfu-util python
+cmake ninja python
 
 # macOS 
 Install Brew: 
 [Link to brew](https://brew.sh)
 
 ```
-brew install cmake ninja dfu-util python
+brew install cmake ninja python
 ```
 
 ## Clone and install ESP-IDF:
