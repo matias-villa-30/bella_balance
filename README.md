@@ -119,23 +119,12 @@ Web BLE not finding device: Ensure you are using a Chromium-based browser (Chrom
 
 Final Check for your Repo:
 
-Make sure your .gitignore in the root folder contains exactly this to prevent team members from overwriting each other's local environment files:
-
+Make sure your ***.gitignore*** in the root folder contains exactly this to prevent team members from overwriting each other's local environment files:
+```
 Plaintext
 build/
 sdkconfig
 sdkconfig.old
 managed_components/
 dependencies.lock
-
-.gitignore should be in the root folder and look like this:
-```
-Plaintext
-**/build/
-**/sdkconfig
-**/sdkconfig.old
-**/dependencies.lock
-**/managed_components/
-.DS_Store
-
 ```
