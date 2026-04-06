@@ -3,6 +3,10 @@
 ## 1. Prerequisites & Installation
 
 To build this project, you need the **Espressif IoT Development Framework (ESP-IDF v6.1+)**.
+***Easy installation:***
+[Link to espressif](https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/get-started/index.html)
+***Alternative***
+[Link to esp-idf github](https://github.com/espressif/esp-idf)
 
 ### Step A: Install System Dependencies (macOS)
 
