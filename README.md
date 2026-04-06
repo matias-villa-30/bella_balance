@@ -14,7 +14,7 @@ To build this project, you need the **Espressif IoT Development Framework (ESP-I
 
 
 Install Dependencies:
-cmake ninja python
+node cmake ninja python
 
 # macOS 
 Install Brew: 
