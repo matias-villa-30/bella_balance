@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 BLE Control</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin: 10px; }
+        #status { color: gray; }
+    </style>
+</head>
+<body>
+    <h2>ESP32 BLE Control</h2>
+    <p id="status">Status: Disconnected</p>
+
+    <button onclick="connect()">1. Connect to ESP32</button>
+    <button onclick="send()">2. Send '1' to ESP32</button>
+
+    <script>
+        let characteristic;
+        // MUST MATCH THE ENDIAN-REVERSED UUIDs IN C
+        const SERVICE_UUID = "2d71a259-b458-c812-9999-4395122f4659";
+        const CHAR_UUID = "00000000-1111-1111-2222-222233333333";
+
+        async function connect() {
+            const statusLabel = document.getElementById('status');
+            try {
+                statusLabel.innerText = "Status: Scanning...";
+                const device = await navigator.bluetooth.requestDevice({
+                    filters: [{ services: [SERVICE_UUID] }]
+                });
+
+                statusLabel.innerText = "Status: Connecting to GATT...";
+                const server = await device.gatt.connect();
+                
+                statusLabel.innerText = "Status: Getting Service...";
+                const service = await server.getPrimaryService(SERVICE_UUID);
+
+                statusLabel.innerText = "Status: Getting Characteristic...";
+                characteristic = await service.getCharacteristic(CHAR_UUID);
+
+                statusLabel.innerText = "Status: Connected!";
+                console.log("Connected to ESP32!");
+            } catch (err) {
+                console.error(err);
+                statusLabel.innerText = "Status: Error - " + err.message;
+            }
+        }
+
+        async function send() {
+            if (!characteristic) {
+                alert("Connect first!");
+                return;
+            }
+
+            try {
+                // Sending a raw 1 as a byte
+                await characteristic.writeValue(new Uint8Array([1]));
+                console.log("Value '1' sent to ESP32");
+            } catch (err) {
+                console.error("Send failed:", err);
+            }
+        }
+    </script>
+</body>
+</html>
